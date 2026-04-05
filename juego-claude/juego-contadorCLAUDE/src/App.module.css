@@ -1,0 +1,280 @@
+.container {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Title ── */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+/* ── Scoreboard ── */
+.scoreboard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.scoreBox {
+  text-align: center;
+}
+
+.scoreLabel {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.scoreValue {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.scoreClicks {
+  color: var(--accent);
+}
+
+.scoreMax {
+  color: var(--accent3);
+}
+
+.scoreDivider {
+  width: 1px;
+  height: 3rem;
+  background: var(--border);
+}
+
+/* ── Arena ── */
+.arena {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.arena::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(240, 192, 64, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Countdown ── */
+.countdown {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.countdownYellow {
+  color: var(--text);
+}
+
+.countdownRed {
+  color: var(--accent2);
+  animation: pulse 0.4s ease infinite alternate;
+}
+
+.countdownGreen {
+  color: #40e080;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+
+/* ── Phase message ── */
+.phaseMsg {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  min-height: 1.1rem;
+}
+
+/* ── Timer bar ── */
+.timerBarWrap {
+  width: 100%;
+  background: var(--surface2);
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.timerBar {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent3);
+  transition: width 0.1s linear, background 0.5s;
+}
+
+.timerBarDanger {
+  background: var(--accent2);
+}
+
+.timerLabel {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+/* ── Click button ── */
+.btnClick {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.1s, border-color 0.1s, color 0.1s;
+  letter-spacing: 0.05em;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btnClick:not(:disabled):hover {
+  background: rgba(240, 192, 64, 0.08);
+  transform: scale(1.03);
+}
+
+.btnClick:not(:disabled):active {
+  transform: scale(0.92);
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+.btnClick:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.btnStart {
+  flex: 1;
+  max-width: 260px;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.btnStart:not(:disabled):hover {
+  border-color: var(--accent3);
+  color: var(--accent3);
+  background: rgba(64, 192, 240, 0.06);
+}
+
+.btnStart:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Result panel ── */
+.resultPanel {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  text-align: center;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.resultTitle {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+}
+
+.resultScore {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.resultSub {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  letter-spacing: 0.05em;
+}
+
+.newRecord {
+  color: #40e080;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+  font-weight: 700;
+}
