@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Juego de Clicks</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .caja {
+    background: white;
+    border-radius: 12px;
+    padding: 30px 40px;
+    text-align: center;
+    width: 280px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  h1 { font-size: 1.4rem; margin-bottom: 20px; color: #333; }
+
+  .info { font-size: 1rem; margin: 8px 0; color: #444; }
+  .info span { font-weight: bold; color: #111; }
+
+  .mensaje { font-size: 1.3rem; font-weight: bold; margin: 15px 0; min-height: 30px; color: #e53935; }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  #btnIniciar { background: #4caf50; color: white; }
+  #btnIniciar:disabled { background: #ccc; cursor: not-allowed; }
+
+  #btnClick { background: #2196f3; color: white; font-size: 1.1rem; }
+  #btnClick:disabled { background: #ccc; cursor: not-allowed; }
+</style>
+</head>
+<body>
+<div class="caja">
+  <h1>Juego de Clicks</h1>
+
+  <div class="mensaje" id="mensaje">Presiona Iniciar</div>
+
+  <div class="info">Tiempo: <span id="tiempo">5</span>s</div>
+  <div class="info">Clicks: <span id="clicks">0</span></div>
+  <div class="info">Record: <span id="record">0</span></div>
+
+  <button id="btnIniciar" onclick="iniciar()">Iniciar</button>
+  <button id="btnClick" onclick="clickear()" disabled>CLICK</button>
+</div>
+
+<script>
+  let clicks = 0, record = 0, tiempo = 5, jugando = false, timer;
+
+  function iniciar() {
+    document.getElementById('btnIniciar').disabled = true;
+    document.getElementById('btnClick').disabled = true;
+    clicks = 0;
+    document.getElementById('clicks').textContent = 0;
+
+    const pasos = ['Preparados...', 'Listos...', 'Ya!'];
+    let i = 0;
+    setMensaje(pasos[0]);
+
+    const cuenta = setInterval(() => {
+      i++;
+      if (i < pasos.length) {
+        setMensaje(pasos[i]);
+      } else {
+        clearInterval(cuenta);
+        empezar();
+      }
+    }, 1000);
+  }
+
+  function empezar() {
+    jugando = true;
+    tiempo = 5;
+    document.getElementById('tiempo').textContent = tiempo;
+    document.getElementById('btnClick').disabled = false;
+
+    timer = setInterval(() => {
+      tiempo--;
+      document.getElementById('tiempo').textContent = tiempo;
+      if (tiempo <= 0) terminar();
+    }, 1000);
+  }
+
+  function clickear() {
+    if (!jugando) return;
+    clicks++;
+    document.getElementById('clicks').textContent = clicks;
+  }
+
+  function terminar() {
+    clearInterval(timer);
+    jugando = false;
+    document.getElementById('btnClick').disabled = true;
+    document.getElementById('btnIniciar').disabled = false;
+
+    if (clicks > record) {
+      record = clicks;
+      document.getElementById('record').textContent = record;
+      setMensaje('Nuevo record!');
+    } else {
+      setMensaje('Tiempo! ' + clicks + ' clicks');
+    }
+  }
+
+  function setMensaje(m) { document.getElementById('mensaje').textContent = m; }
+</script>
+</body>
+</html>
