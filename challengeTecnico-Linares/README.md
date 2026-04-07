@@ -53,5 +53,3 @@ nada de librerias ni nada raro, puro codigo basico.
 - los botones se deshabilitan cuando no se pueden usar
 
 ---
-
-hecho para la materia. cualquier duda pregunten
